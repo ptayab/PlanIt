@@ -9,6 +9,9 @@
 </head>
 <body>
 <div class="signup-login">
+    <div>
+        <h2>Hello {{user}}</h2>
+    </div>
     <div class="signup-box">
         <form method="post">
             {% csrf_token %}
@@ -18,6 +21,12 @@
             <input type="text" class="inp" name="task" required placeholder="Task">
             <input type="submit" class="submit-button" value="Add Task">
         </form>
+        {% for todo in res %}
+        <div class="Todo">
+            <h5>{{todo.serial_num}}</h5>
+            <p>{{todo.task}}</p>
+        </div>
+        {% endfor %}
         <div>
             <a class="anc" href="/login">Logout</a>
         </div>

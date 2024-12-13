@@ -32,7 +32,11 @@ def todopage(request):
     if request.method == 'POST':
         task=request.POST.get('task')
         print(task)
+
         # Show only todo by currently logged in user
         obj=models.TODO(task=task, user=request.user)
         obj.save()
-    return render(request, 'todo.html')
+        res=models.TODO.objects.filter(user=request.user).order_by('-date')
+        return redirect("/todopage", {'res': res})
+    res=models.TODO.objects.filter(user=request.user).order_by('-date')
+    return render(request, 'todo.html', {'res': res})
