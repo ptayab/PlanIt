@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.signup),
     path('login/', views.login),
+    path('todopage/', views.todopage),
 ]
